@@ -1,0 +1,8 @@
+.iframe-dnt-container {
+  opacity: 0.5;
+}
+
+.iframe-dnt-container::after {
+  opacity: 1;
+  content: "This is no bueno!!";
+}
