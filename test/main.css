@@ -1,8 +1,29 @@
 .iframe-dnt-container {
-  opacity: 0.5;
+  display: block;
+  position: relative;
+  margin: auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.iframe-dnt-container::after {
-  opacity: 1;
-  content: "This is no bueno!!";
+.dnt-back {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(70,70,70,.7);
+}
+
+.dnt-warning {
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  margin: -10% 0 0 -40%;
+  text-align: center;
+}
+
+.dnt-warning:after {
+  content: "Scandalous!";
 }
