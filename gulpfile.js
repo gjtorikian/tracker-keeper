@@ -25,5 +25,6 @@ gulp.task("default", function () {
 gulp.task("deploy", function() {
   return gulp.src(["**/dist/*", "!**/node_modules/**/dist/*", "test/**/*"])
              .pipe(replace("../dist/", "./dist/"))
+             .pipe(replace("https://", "http://"))
              .pipe(ghPages());
 });
