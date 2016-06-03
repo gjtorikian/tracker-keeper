@@ -1,9 +1,11 @@
 "use strict";
-import gulp from "gulp";
-import babel from "gulp-babel";
-import uglify from "gulp-uglify";
+var gulp = require("gulp");
+var babel = require("gulp-babel");
+var uglify = require("gulp-uglify");
+
 process.env.FORCE_COLOR = true;
-gulp.task("js", () => {
+
+gulp.task("js", function() {
   return gulp.src("src/**/*.js")
     .pipe(babel({
       plugins: ["transform-es2015-modules-umd"]
@@ -13,6 +15,7 @@ gulp.task("js", () => {
 //   }))
     .pipe(gulp.dest("dist"));
 });
-gulp.task("default", () => {
+
+gulp.task("default", function () {
   gulp.start(["js"]);
 });
