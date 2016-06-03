@@ -22,6 +22,6 @@ gulp.task("default", function () {
 });
 
 gulp.task('deploy', function() {
-  return gulp.src(["./dist", "test/**/*"])
-             .pipe(ghPages());
+  gulp.src(["dist", "test/**/*"])
+      .pipe(ghPages());
 });

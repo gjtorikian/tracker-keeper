@@ -5,3 +5,5 @@ node_modules/
 packages/
 
 npm-debug.log
+
+.publish
