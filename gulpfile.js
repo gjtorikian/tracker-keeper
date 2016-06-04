@@ -15,7 +15,8 @@ gulp.task("js", function() {
 //   .pipe(uglify({
 //     mangle: true
 //   }))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest("test/dist"));
 });
 
 gulp.task("default", function () {
