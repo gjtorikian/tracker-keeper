@@ -1,7 +1,12 @@
 var assert = require("assert"),
-    webdriver = require("selenium-webdriver");
+    webdriver = require("selenium-webdriver"),
+    server = require('./server');
 
 describe("testing javascript in the browser", function() {
+  before(function () {
+    server();
+  });
+
   beforeEach(function() {
     if (process.env.SAUCE_USERNAME != undefined) {
       this.browser = new webdriver.Builder()
@@ -20,21 +25,20 @@ describe("testing javascript in the browser", function() {
       }).build();
     }
 
-    return this.browser.get("http://localhost:8000/test/index.html");
+    return this.browser.get("http://localhost:8888/index.html");
   });
 
   afterEach(function() {
-    // return this.browser.quit();
+    return this.browser.quit();
   });
 
   it("should block YouTube embeds", function(done) {
-    var iFrame = this.browser.findElement(webdriver.By.css('body'));
-    iFrame.getText().then(function(txt) {
-      console.log(txt)
+    var html = this.browser.findElement(webdriver.By.css('html'));
+    this.browser.wait(webdriver.until.elementLocated(webdriver.By.css('.dnt-warning')), 10000, 'Could not locate the child element within the time specified');
+    html.getInnerHtml().then(function(text) {
+      console.log(text)
+      assert(/does not respect DNT/.test(text));
       done();
     });
-    // var container = iFrame.findElement(By.xpath(".."));
-    //
-    // assert.equal(container.getAttribute("class"), "iframe-dnt-container ");
   });
 });
